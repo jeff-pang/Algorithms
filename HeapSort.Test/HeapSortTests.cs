@@ -20,9 +20,9 @@ namespace HeapSort.Test
         private void sort()
         {
             int[] source = new[] { 1, 2, 3, 4, 5, 6, 7, 16, 9, 10, 11, 12, 13, 14, 15, 8 };
+            int[] expected = source.OrderBy(s => s).ToArray();
             var sorter = new Sorter();
             sorter.Sort(source);
-            int[] expected = source.OrderBy(s => s).ToArray();
             Assert.Equal(expected, source);
         }
     }
