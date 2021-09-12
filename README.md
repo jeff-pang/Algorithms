@@ -1,6 +1,16 @@
 # Algorithms in C#
 A collection of algorithms written in C#
 
+## General
+
+
+### Manacher's Algorithm
+|Best|Average|Worst|
+|---|---|---|
+|O(n)|O(n)|O(n)|
+
+## Sorts
+
 ### Heap Sort (Non-recursive)
 
 |Best|Average|Worst|
