@@ -5,6 +5,8 @@ A collection of algorithms written in C#
 
 
 ### Manacher's Algorithm
+Search for longest Palindrome substring
+
 |Best|Average|Worst|
 |---|---|---|
 |O(n)|O(n)|O(n)|
