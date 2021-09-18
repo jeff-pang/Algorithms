@@ -50,5 +50,43 @@ namespace AdjacencyList
                 }
             }
         }
+        
+        public IEnumerable<Edge> Dfs(int start = 0)
+        {
+            if (!_adjList.ContainsKey(start))
+                yield break;
+
+            var visited = new HashSet<(int from, int to)>();
+            var stack = new Stack<int>();
+            stack.Push(start);
+            int prev = -1;
+            
+            while (stack.Count > 0)
+            {
+                int curr = stack.Pop();
+
+                var visitEdge = (prev, curr);
+                if (_paths.ContainsKey((prev, curr)))
+                {
+                    yield return _paths[visitEdge];
+                }
+                
+                if (_adjList.ContainsKey(curr))
+                {
+                    foreach (int neighbour in _adjList[curr])
+                    {
+                        var edge = (curr, neighbour);
+                        if (!visited.Contains(edge) && _paths.ContainsKey(edge))
+                        {
+                            stack.Push(curr);
+                            stack.Push(neighbour);
+                            visited.Add(edge);
+                        }
+                    }
+                }
+                
+                prev = curr;
+            }
+        }
     }
 }

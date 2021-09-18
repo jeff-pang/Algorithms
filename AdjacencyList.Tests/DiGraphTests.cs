@@ -37,5 +37,21 @@ namespace AdjacencyList.Tests
 
             Assert.Equal(expected, graph.Bfs().Select(p=>(p.From,p.To)));
         }
+        
+        [Fact]
+        public void depth_first_traversal()
+        {
+            var graph = new DiGraph();
+            graph.Create(0, 1);
+            graph.Create(0, 2);
+            graph.Create(1, 2);
+            graph.Create(2, 3);
+            graph.Create(3, 4);
+
+            foreach (var edge in graph.Dfs())
+            {
+                _output.WriteLine($"{edge.From}->{edge.To}");
+            }
+        }
     }
 }
