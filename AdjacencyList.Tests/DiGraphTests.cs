@@ -35,9 +35,9 @@ namespace AdjacencyList.Tests
                 (3, 0)
             };
 
-            Assert.Equal(expected, graph.Bfs().Select(p=>(p.From,p.To)));
+            Assert.Equal(expected, graph.Bfs().Select(p => (p.From, p.To)));
         }
-        
+
         [Fact]
         public void depth_first_traversal()
         {
@@ -47,11 +47,20 @@ namespace AdjacencyList.Tests
             graph.Create(1, 2);
             graph.Create(2, 3);
             graph.Create(3, 4);
+            graph.Create(4, 0);
 
-            foreach (var edge in graph.Dfs())
+
+            var expected = new List<(int from, int to)>
             {
-                _output.WriteLine($"{edge.From}->{edge.To}");
-            }
+                (0, 2),
+                (2, 3),
+                (3, 4),
+                (4, 0),
+                (0, 1),
+                (1, 2)
+            };
+
+            Assert.Equal(expected, graph.Dfs().Select(p => (p.From, p.To)));
         }
     }
 }
