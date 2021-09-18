@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace AdjacencyList
 {
-    public class Graph
+    public class DiGraph
     {
         private Dictionary<(int from, int to), Edge> _paths = new();
         private Dictionary<int, HashSet<int>> _adjList = new();
@@ -40,14 +40,10 @@ namespace AdjacencyList
                     foreach (int neighbour in _adjList[curr])
                     {
                         var edge = (curr, neighbour);
-                        if (!visited.Contains(edge))
+                        if (!visited.Contains(edge) && _paths.ContainsKey(edge))
                         {
-                            if (_paths.ContainsKey(edge))
-                            {
-                                visited.Add(edge);
-                                yield return _paths[edge];
-                            }
-
+                            visited.Add(edge);
+                            yield return _paths[edge];
                             queue.Enqueue(neighbour);
                         }
                     }

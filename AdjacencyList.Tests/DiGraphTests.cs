@@ -7,11 +7,11 @@ using Xunit.Abstractions;
 
 namespace AdjacencyList.Tests
 {
-    public class GraphTests
+    public class DiGraphTests
     {
         private readonly ITestOutputHelper _output;
 
-        public GraphTests(ITestOutputHelper output)
+        public DiGraphTests(ITestOutputHelper output)
         {
             _output = output;
         }
@@ -19,7 +19,7 @@ namespace AdjacencyList.Tests
         [Fact]
         public void breadth_first_traversal()
         {
-            var graph = new Graph();
+            var graph = new DiGraph();
             graph.Create(0, 1);
             graph.Create(0, 2);
             graph.Create(1, 2);
