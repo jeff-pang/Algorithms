@@ -10,6 +10,19 @@ Search for longest Palindrome substring and can also find all palindromic substr
 |---|---|---|
 |O(n)|O(n)|O(n)|
 
+## Graphs
+
+### Ajacency List
+Adjacency list representation of graph and iterative depth first and breadth first traversals
+
+
+|Best|Average|Worst|
+|---|---|---|
+||**BFS**||
+|O(e)|O(e)|O(e)|
+||**DFS**||
+|O(e)|O(e)|O(e)|
+
 ## Sorts
 
 ### Heap Sort (Non-recursive)
