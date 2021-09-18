@@ -3,9 +3,8 @@ A collection of algorithms written in C#
 
 ## General
 
-
 ### Manacher's Algorithm
-Search for longest Palindrome substring
+Search for longest Palindrome substring and can also find all palindromic substring in O(n) time complexity.
 
 |Best|Average|Worst|
 |---|---|---|

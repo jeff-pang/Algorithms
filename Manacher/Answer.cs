@@ -13,25 +13,25 @@ namespace Manacher
             var lengths = new int[s.Length * 2 + 1];
             lengths[1] = 1;
             
-            int maxPos = 1;
-            int boundary = 2;
-            int center = 1;
+            int idxWithMaxLen = 1;
+            int rightBoundary = 2;
+            int centerPtr = 1;
             
-            void Expand(int middle)
+            void Expand(int center)
             {
-                bool BothSidesWithinWorkingSet(int i) => middle - i >= 0 && middle + i < workingSet.Length;
+                bool BothSidesWithinWorkingSet(int i) => center - i >= 0 && center + i < workingSet.Length;
                 
-                int left = middle - 1;
-                int right = middle + 1;
+                int left = center - 1;
+                int right = center + 1;
                 
                 for (int i = 1; BothSidesWithinWorkingSet(i); i++)
                 {
-                    left = middle - i;
-                    right = middle + i;
+                    left = center - i;
+                    right = center + i;
                     
                     if (workingSet[left] == workingSet[right])
                     {
-                        lengths[middle] = i;
+                        lengths[center] = i;
                     }
                     else
                     {
@@ -39,25 +39,25 @@ namespace Manacher
                     }
                 }
                 
-                boundary = right;
-                center = middle;
-                maxPos = lengths[maxPos] < lengths[middle] ? middle : maxPos;
+                rightBoundary = right;
+                centerPtr = center;
+                idxWithMaxLen = lengths[idxWithMaxLen] < lengths[center] ? center : idxWithMaxLen;
             }
 
             for (int i = 2; i < workingSet.Length; i++)
             {
-                if (i < boundary)
+                if (i < rightBoundary)
                 {
-                    int mirror = 2 * center - i;
-                    int idx = boundary - i;
+                    int mirror = 2 * centerPtr - i;
+                    int idx = rightBoundary - i;
                     lengths[i] = Math.Min(idx, mirror);
                 }
                 
                 Expand(i);
             }
 
-            int palindromeLen = lengths[maxPos];
-            int palindromeStart = (maxPos - palindromeLen) / 2 ;
+            int palindromeLen = lengths[idxWithMaxLen];
+            int palindromeStart = (idxWithMaxLen - palindromeLen) / 2 ;
             return s.Substring(palindromeStart, palindromeLen);
         }
         
